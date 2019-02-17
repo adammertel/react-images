@@ -1277,7 +1277,6 @@ var Lightbox = function (_Component) {
       var image = images[currentImage];
       var thumbnailsSize = showThumbnails ? this.theme.thumbnail.size : 0;
       var sourceSet = normalizeSourceSet(image);
-      console.log(sourceSet);
 
       var params = {
         sourceSet: sourceSet,
@@ -1286,7 +1285,7 @@ var Lightbox = function (_Component) {
       };
 
       var figureContent = false;
-      if (image.mediaType === "photo") {
+      if (image.mediaType === "image") {
         figureContent = this.renderImage(image, params);
       } else if (image.mediaType === "video" && image.sourceType === "youtube") {
         figureContent = this.renderYoutubeVideo(image, params);
@@ -1317,9 +1316,8 @@ var Lightbox = function (_Component) {
     key: "renderYoutubeVideo",
     value: function renderYoutubeVideo(image, params) {
       return React.createElement("iframe", {
-        id: "gh-pages-youtube",
-        frameborder: "0",
-        allowfullscreen: "1",
+        frameBorder: "0",
+        allowFullscreen: "1",
         allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
         title: "YouTube video player",
         src: "https://www.youtube.com/embed/" + image.src + "?autohide=1&amp;modestbranding=1&amp",
