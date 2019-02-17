@@ -12,7 +12,6 @@ function makeUnsplashSrcSet(id, size) {
 }
 function makeUnsplashThumbnail(id, orientation = "landscape") {
   const dimensions = orientation === "square" ? "w=300&h=300" : "w=240&h=159";
-
   return `https://images.unsplash.com/photo-${id}?dpr=2&auto=format&crop=faces&fit=crop&${dimensions}`;
 }
 
