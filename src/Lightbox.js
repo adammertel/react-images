@@ -266,7 +266,6 @@ class Lightbox extends Component {
     const image = images[currentImage];
     const thumbnailsSize = showThumbnails ? this.theme.thumbnail.size : 0;
     const sourceSet = normalizeSourceSet(image);
-    console.log(sourceSet);
 
     const params = {
       sourceSet: sourceSet,
@@ -278,7 +277,7 @@ class Lightbox extends Component {
     };
 
     let figureContent = false;
-    if (image.mediaType === "photo") {
+    if (image.mediaType === "image") {
       figureContent = this.renderImage(image, params);
     } else if (image.mediaType === "video" && image.sourceType === "youtube") {
       figureContent = this.renderYoutubeVideo(image, params);
@@ -318,9 +317,8 @@ class Lightbox extends Component {
   renderYoutubeVideo(image, params) {
     return (
       <iframe
-        id="gh-pages-youtube"
-        frameborder="0"
-        allowfullscreen="1"
+        frameBorder="0"
+        allowFullscreen="1"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         title="YouTube video player"
         src={

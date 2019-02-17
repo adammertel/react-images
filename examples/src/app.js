@@ -26,7 +26,7 @@ const DEFAULT_IMAGES = [
       "https://images.unsplash.com/photo-1470619549108-b85c56fe5be8?dpr=2&auto=format&crop=faces&fit=crop&square",
     caption: "Photo by Alan Emery",
     sourceType: "url",
-    mediaType: "photo",
+    mediaType: "image",
     orientation: "square",
     useForDemo: true
   }, // https://unsplash.com/photos/SYzUF6XcWBY (Flamingo)
