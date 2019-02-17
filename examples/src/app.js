@@ -21,7 +21,7 @@ function makeUnsplashThumbnail(id, orientation = "landscape") {
 
 const DEFAULT_IMAGES = [
   {
-    path:
+    src:
       "https://images.unsplash.com/photo-1470619549108-b85c56fe5be8?dpr=2&auto=format&w=1024&h=1024",
     thumbnail:
       "https://images.unsplash.com/photo-1470619549108-b85c56fe5be8?dpr=2&auto=format&crop=faces&fit=crop&square",
@@ -32,10 +32,10 @@ const DEFAULT_IMAGES = [
     useForDemo: true
   }, // https://unsplash.com/photos/SYzUF6XcWBY (Flamingo)
   {
-    path: "ZqJ0-IxFiTQ",
-    thumbnail: "https://i.ytimg.com/vi/jONPK1YEh5E/hqdefault.jpg",
+    src: "ZqJ0-IxFiTQ",
+    thumbnail: "https://i.ytimg.com/vi/ZqJ0-IxFiTQ/hqdefault.jpg",
     caption: "video",
-    orientation: "landscape",
+    orientation: "square",
     sourceType: "youtube",
     mediaType: "video",
     useForDemo: true
@@ -198,27 +198,7 @@ render(
       </p>
     </div>
     <h3>Default Options</h3>
-    <Gallery
-      images={DEFAULT_IMAGES.map(
-        ({
-          caption,
-          path,
-          sourceType,
-          mediaType,
-          thumbnail,
-          orientation,
-          useForDemo
-        }) => ({
-          src: path,
-          sourceType: sourceType,
-          mediaType: mediaType,
-          thumbnail: thumbnail,
-          caption,
-          orientation,
-          useForDemo
-        })
-      )}
-    />
+    <Gallery images={DEFAULT_IMAGES} />
 
     {/*
 

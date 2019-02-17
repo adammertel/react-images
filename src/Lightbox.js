@@ -261,31 +261,27 @@ class Lightbox extends Component {
   renderImages() {
     const { currentImage, images, onClickImage, showThumbnails } = this.props;
 
-    const { imageLoaded } = this.state;
-
     if (!images || !images.length) return null;
 
     const image = images[currentImage];
-    const sourceSet = normalizeSourceSet(image);
-    const sizes = sourceSet ? "100vw" : null;
-
     const thumbnailsSize = showThumbnails ? this.theme.thumbnail.size : 0;
-    const heightOffset = `${this.theme.header.height +
-      this.theme.footer.height +
-      thumbnailsSize +
-      this.theme.container.gutter.vertical}px`;
+    const sourceSet = normalizeSourceSet(image);
+    console.log(sourceSet);
 
-    console.log("image", image);
+    const params = {
+      sourceSet: sourceSet,
+      sizes: sourceSet ? "100vw" : null,
+      heightOffset: `${this.theme.header.height +
+        this.theme.footer.height +
+        thumbnailsSize +
+        this.theme.container.gutter.vertical}px`
+    };
 
     let figureContent = false;
     if (image.mediaType === "photo") {
-      figureContent = this.renderImage(image, {
-        sizes: sizes,
-        heightOffset: heightOffset,
-        sourceSet: sourceSet
-      });
-    } else if (image.mediaType === "video") {
-      figureContent = this.renderVideo(image);
+      figureContent = this.renderImage(image, params);
+    } else if (image.mediaType === "video" && image.sourceType === "youtube") {
+      figureContent = this.renderYoutubeVideo(image, params);
     }
     return (
       <figure className={css(this.classes.figure)}>
@@ -319,22 +315,25 @@ class Lightbox extends Component {
       />
     );
   }
-  renderVideo(image, params) {
+  renderYoutubeVideo(image, params) {
     return (
       <iframe
         id="gh-pages-youtube"
-        data-reactid=".0.0"
         frameborder="0"
         allowfullscreen="1"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         title="YouTube video player"
-        width="640"
-        height="360"
         src={
           "https://www.youtube.com/embed/" +
           image.src +
           "?autohide=1&amp;modestbranding=1&amp"
         }
+        style={{
+          height: `calc(100vh - ${params.heightOffset})`,
+          width: `calc(100vw - ${params.heightOffset})`,
+          maxWidth: "100%",
+          maxHeight: "100%"
+        }}
       />
     );
   }
@@ -359,6 +358,7 @@ class Lightbox extends Component {
       />
     );
   }
+
   renderHeader() {
     const {
       closeButtonTitle,
@@ -376,6 +376,7 @@ class Lightbox extends Component {
       />
     );
   }
+
   renderFooter() {
     const {
       currentImage,
