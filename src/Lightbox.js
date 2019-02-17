@@ -318,7 +318,7 @@ class Lightbox extends Component {
     return (
       <iframe
         frameBorder="0"
-        allowFullscreen="1"
+        allowFullScreen="1"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         title="YouTube video player"
         src={
